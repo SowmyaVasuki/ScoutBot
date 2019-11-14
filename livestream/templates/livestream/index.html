@@ -1,0 +1,154 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!--script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script-->
+</head>
+<body>
+<iframe src="https://www.ustream.tv/embed/23561246?html5ui" style="border: 0 none transparent;"  webkitallowfullscreen allowfullscreen frameborder="no" width="480" height="270"></iframe>
+
+<!--<img src="http://192.168.43.77:8081" />-->
+<div style="float:right">
+
+</div>
+<div style=" height:400px; width:300px; float:right;">
+<center>
+<h2>SCOUT BOT</h2><br><br>
+
+
+<!--a href="/livestream/forward" id="up" style="font-size:30px;text-decoration:none;">  &#x1F881;&#x1F881;<br>Forward</a><br><br></center>
+<a href="/livestream/left" id="left" style="font-size:30px;text-decoration:none;"> &#x1F880;&#x1F880;Left</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/livestream/right" id="right" style="font-size:30px; text-decoration:none;"> Right &#x1F882;&#x1F882;</a><br><br>
+<center><a href="/livestream/reverse" id="down" style="font-size:30px;text-decoration:none;"> Backward<br> &#x1F883;&#x1F883;</a--></center>
+
+</div><br>
+<button onclick="sendData('forward')">
+    forward
+</button><br>
+<button onclick="sendData('reverse')">
+    reverse
+</button><br>
+<button onclick="sendData('right')">
+    right
+</button><br>
+<button onclick="sendData('left')">
+    left
+</button>
+<br>
+<br>
+<div id="scrap">
+scrap
+</div>
+<script>
+
+document.addEventListener('keydown', function(event) {
+    //left
+    if(event.keyCode == 37 || event.keyCode == 65 ) {
+         sendData('left1');
+    }
+    //top
+    else if(event.keyCode == 38 || event.keyCode == 87) {
+        sendData('forward1');
+    }
+    //right
+    else if(event.keyCode == 39 || event.keyCode == 68) {
+         sendData('right1');
+    }
+    //bottom
+    else if(event.keyCode == 40 || event.keyCode == 83) {
+         sendData('reverse1');
+    }
+    else if(event.keyCode == 32) {
+	    sendData('stop');
+    }
+});
+
+document.addEventListener('keyup', function(event) {
+    //left
+    if(event.keyCode == 37 || event.keyCode == 65 ) {
+         sendData('left1');
+    }
+    //top
+    else if(event.keyCode == 38 || event.keyCode == 87) {
+         sendData('checkfor');
+    }
+    //right
+    else if(event.keyCode == 39 || event.keyCode == 68) {
+         sendData('right1');
+    }
+    //bottom
+    else if(event.keyCode == 40 || event.keyCode == 83) {
+         sendData('checkback');
+    }   
+});
+function sendData(string){
+    if(string == 'forward'){
+        $.ajax({url: "{% url 'livestream:forward' %}", success: function(result){
+            console.log(result);
+        }});
+        document.getElementById('scrap').innerHTML =  "forward";
+    }
+    else if(string == 'reverse'){
+        $.ajax({url: "{% url 'livestream:reverse' %}", success: function(result){
+            console.log(result);
+        }});
+        document.getElementById('scrap').innerHTML =  "reverse";
+    }
+    else if(string == 'right'){
+        $.ajax({url: "{% url 'livestream:right' %}", success: function(result){
+            console.log(result);
+        }});
+        document.getElementById('scrap').innerHTML =  "right";
+    }
+    else if(string == 'left'){
+        $.ajax({url: "{% url 'livestream:left' %}", success: function(result){
+            console.log(result);
+        }});
+        document.getElementById('scrap').innerHTML =  "left";
+    }
+    else if(string == 'forward1'){
+        $.ajax({url: "{% url 'livestream:forward1' %}", success: function(result){
+            console.log(result);
+        }});
+        document.getElementById('scrap').innerHTML =  "forward1";
+    }
+    else if(string == 'reverse1'){
+        $.ajax({url: "{% url 'livestream:reverse1' %}", success: function(result){
+            console.log(result);
+        }});
+        document.getElementById('scrap').innerHTML =  "reverse1";
+    }
+    else if(string == 'left1'){
+        $.ajax({url: "{% url 'livestream:left1' %}", success: function(result){
+            console.log(result);
+        }});
+        document.getElementById('scrap').innerHTML =  "left1";
+    }
+    else if(string == 'right1'){
+        $.ajax({url: "{% url 'livestream:right1' %}", success: function(result){
+            console.log(result);
+        }});
+        document.getElementById('scrap').innerHTML =  "right1";
+    }
+    else if(string == 'stop'){
+        $.ajax({url: "{% url 'livestream:stop' %}", success: function(result){
+            console.log(result);
+        }});
+        document.getElementById('scrap').innerHTML =  "stop";
+    }
+    else if(string == 'checkfor'){
+        $.ajax({url: "{% url 'livestream:checkfor' %}", success: function(result){
+            console.log(result);
+        }});
+        document.getElementById('scrap').innerHTML =  "checkfor";
+    }
+    else if(string == 'checkback'){
+        $.ajax({url: "{% url 'livestream:checkback' %}", success: function(result){
+            console.log(result);
+        }});
+        document.getElementById('scrap').innerHTML =  "checkback";
+    }
+}
+
+</script>
+</body>
+</html>
